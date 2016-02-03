@@ -1,14 +1,16 @@
 package com.globant.academy.catalog;
 
-import java.io.Console;
+public class App {
 
-public class App 
-{	
-    public static void main( String[] args )
-    {
-    	
-    	boolean salir=false;
-    	
-    	
-    }
+	static MainMenu mainMenu = new MainMenu();
+	static Admin admin = new Admin();
+
+	public static void main(String[] args) {
+
+		mainMenu.runMenu();
+		// System.out.println(admin.toString());
+
+		// System.out.println(Login.loggedUser);
+
+	}
 }

@@ -1,21 +1,42 @@
 package com.globant.academy.catalog;
 
-public class Admin {
+public class Admin extends User {
 
-	private final String name = "Sheldon";
-	private final String pass = "Bazinga";
-
-	public String getName() {
-		return name;
+	public Admin() {
+		super();
+		name = "Sheldon";
+		pass = "Bazinga";
 	}
 
-	public String getPass() {
-		return pass;
+	private boolean addUser() {
+		return false;
 	}
 
-	@Override
-	public String toString() {
-		return "Admin [name=" + name + ", pass=" + pass + "]";
+	private boolean deleteUser() {
+		return false;
 	}
 
+	private boolean addComic() {
+		return false;
+	}
+
+	private boolean modifyComic() {
+		return false;
+	}
+
+	private boolean removeComic() {
+		return false;
+	}
+
+	private boolean addGenre() {
+		return false;
+	}
+
+	private boolean modifyGenre() {
+		return false;
+	}
+
+	private boolean removeGenre() {
+		return false;
+	}
 }
