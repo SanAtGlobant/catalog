@@ -3,7 +3,6 @@ package com.globant.academy.catalog;
 public class App {
 
 	static MainMenu mainMenu = new MainMenu();
-	static Admin admin = new Admin();
 
 	public static void main(String[] args) {
 

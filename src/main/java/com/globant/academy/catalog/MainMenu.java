@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-	static Login login = new Login();
+	Login login = new Login();
 	protected byte option;
 	private boolean exit;
 	Scanner scan = new Scanner(System.in);
+	static Admin admin = new Admin();
 
 	public void runMenu() {
 
@@ -15,7 +16,7 @@ public class MainMenu {
 			showMenu();
 			option = askOption();
 			processOption(option);
-			while (Login.getLoggedUser() != null) {
+			while (login.getLoggedUser() != null) {
 				showUserMenu();
 				byte userOption = askOption();
 				processUserOption(userOption);
@@ -24,7 +25,56 @@ public class MainMenu {
 	}
 
 	private void processUserOption(byte userOption) {
-		// TODO Auto-generated method stub
+		if (login.getLoggedUserPrivilege().equals("Admin")) {
+			switch (userOption) {
+			case 1:
+				login.addUser();
+				break;
+			case 2:
+				login.deleteUser();
+				break;
+			case 3:
+				login.displayUsers();
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8:
+				break;
+			case 9:
+				login.logOut();
+				break;
+			case 0:
+				login.logOut();
+				exit = true;
+				break;
+			default:
+				break;
+			}
+		} else {
+			switch (userOption) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				login.logOut();
+				break;
+			case 0:
+				login.logOut();
+				exit = true;
+				break;
+			default:
+				break;
+			}
+		}
 
 	}
 
@@ -43,7 +93,7 @@ public class MainMenu {
 			break;
 		case 3:
 			System.out.println("Until next time! :)");
-			exit = false;
+			exit = true;
 			break;
 		default:
 			System.out.println("\nThe option is invalid, please choose again.\n");
@@ -64,17 +114,16 @@ public class MainMenu {
 	}
 
 	private void showUserMenu() {
-		switch (Login.getLoggedUserPrivilege()) {
+		switch (login.getLoggedUserPrivilege()) {
 		case "Admin":
-			System.out.print("\n\n1 - Add user" + "\n2 - Delete user" + "\n3 - Add comic" + "\n4 - Modify comic"
+			System.out.print("\n\n1 - Add user" + "\n2 - Delete user" + "\n3 - Display users" + "\n4 - Modify comic"
 					+ "\n5 - Delete comic" + "\n6 - Add genre" + "\n7 - Modify genre" + "\n8 - Delete genre"
 					+ "\n9 - Log out" + "\n0 - Quit application" + "\n----------------------------------"
 					+ "\nOption: ");
 			break;
 		case "User":
 			System.out.print("\n\n1 - Borrow comic" + "\n2 - Return comic" + "\n3 - View catalog" + "\n4 - Log out"
-					+ "\n0 - Quit application" + "\n----------------------------------"
-					+ "\nOption: ");
+					+ "\n0 - Quit application" + "\n----------------------------------" + "\nOption: ");
 			break;
 		}
 	}

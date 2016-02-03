@@ -1,16 +1,20 @@
 package com.globant.academy.catalog;
 
+import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Login {
 	private static TreeSet<User> userList = new TreeSet<User>(new stringComp());
+//	private static TreeSet<User> userList = new TreeSet<User>(); NO FUNCIONO
 	private static User loggedUser;
 	private static String loggedUserPrivilege;
+	private static Scanner s = new Scanner(System.in);
 
 	public void logUser(User u) {
+		userList.add(new User("Luca", "Luca"));
 		if (isSheldon(u)) {
 			System.out.println(u.getName() + " is now logged in.");
-			setLoggedUser(u);
+			setLoggedUser(new Admin());
 			setLoggedUserPrivilege("Admin");
 		} else if (userList.contains(u)) {
 			System.out.println(u.getName() + " is now logged in.");
@@ -25,36 +29,78 @@ public class Login {
 		return (u.getName().equalsIgnoreCase("sheldon") && u.getPass().equals("Bazinga"));
 	}
 
-
 	// USERLIST
-	public static boolean addUser(User u) {
-		if(getLoggedUserPrivilege().equals("Admin")){
-			if (userList.add(u)) {
+	public boolean addUser() {
+		if (getLoggedUserPrivilege().equals("Admin")) {
+			String usr, pss;
+			System.out.print("\nUser: ");
+			usr = s.next();
+			System.out.print("\nPassword: ");
+			pss = s.next();
+			User user = new User(usr, pss);
+			if (userList.add(user)) {
 				System.out.println("The user was added successfully.");
 				return true;
 			} else {
 				System.out.println("The user was already created.");
 				return false;
 			}
-		}else{
+		} else {
 			System.out.println("Your has no privileges.");
 			return false;
 		}
 	}
+
+	public boolean deleteUser() {
+
+		if (getLoggedUserPrivilege().equals("Admin")) {
+			String usr, pss;
+			System.out.print("\nUser: ");
+			usr = s.next();
+			System.out.print("\nPassword: ");
+			pss = s.next();
+			User user = new User(usr, pss);
+			if (userList.remove(user)) {
+				System.out.println("The user was added successfully.");
+				return true;
+			} else {
+				System.out.println("The user was already created.");
+				return false;
+			}
+		} else {
+			System.out.println("Your user has no privileges.");
+			return false;
+		}
+	}
+	
+	
+	public void displayUsers() {
+		if (getLoggedUserPrivilege().equals("Admin")) {
+			System.out.println(userList);
+		}else{
+			System.out.println("Your user has no privileges.");
+		}
+	}
+	
+	public void logOut(){
+		setLoggedUser(null);
+		setLoggedUserPrivilege(null);
+	}
+
 	// LOGGED USER
-	public static void setLoggedUser(User loggedUser) {
+	public  void setLoggedUser(User loggedUser) {
 		Login.loggedUser = loggedUser;
 	}
 
-	public static User getLoggedUser() {
+	public  User getLoggedUser() {
 		return loggedUser;
 	}
 
-	public static String getLoggedUserPrivilege() {
+	public String getLoggedUserPrivilege() {
 		return loggedUserPrivilege;
 	}
 
-	public static void setLoggedUserPrivilege(String loggedUserPrivilege) {
+	public void setLoggedUserPrivilege(String loggedUserPrivilege) {
 		Login.loggedUserPrivilege = loggedUserPrivilege;
 	}
 }
