@@ -23,7 +23,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User: " + name + " Type: " + getClass().toString().substring(6);
+		return name + pass;
 	}
 
 }
