@@ -17,5 +17,9 @@ public class Genre {
 	public String displayGenres(){
 		return genreList.toString();
 	}
+	
+	public TreeSet<String> retrieveGenre(){
+		return genreList;
+	}
 
 }

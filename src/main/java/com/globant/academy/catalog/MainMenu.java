@@ -43,6 +43,7 @@ public class MainMenu {
 			login.logUser(user);
 			break;
 		case 2:
+			Shelf.displayComics();
 			break;
 		case 3:
 			System.out.println("Until next time! :)");

@@ -6,12 +6,22 @@ public class Comic {
 	private int count = 0;
 	private int volume;
 
-	
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (getGenre().equals(((Comic) obj).getGenre()) && getTitle().equals(((Comic) obj).getTitle())
+				&& getVolume() == ((Comic) obj).getVolume()) {
+			return true;
+		}
+		return false;
+	}
 
 	// ***** GETTERS & SETTERS
-	
+
+	@Override
+	public String toString() {
+		return genre + "    " + title + "    " + volume;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -43,10 +53,11 @@ public class Comic {
 	public void setVolume(int volume) {
 		this.volume = volume;
 	}
-	
-	public String getId(){
-		return getGenre()+getTitle()+getVolume();
+
+	public String getId() {
+		return getGenre() + getTitle() + getVolume();
 	}
+
 	// ***** CONSTRUCTOR *****
 	public Comic(String title, String genre, int volume) {
 		this.title = title;

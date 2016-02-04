@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Login {
-	private static TreeSet<User> userList = new TreeSet<User>(new stringComp());
+	private static TreeSet<User> userList = new TreeSet<User>(new UserComp());
 //	private static TreeSet<User> userList = new TreeSet<User>(); NO FUNCIONO
 	private static User loggedUser;
 	private static String loggedUserPrivilege;

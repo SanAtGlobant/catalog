@@ -18,6 +18,7 @@ public class User {
 		case 2:
 			break;
 		case 3:
+			Shelf.displayComics();
 			break;
 		case 4:
 			return 0;

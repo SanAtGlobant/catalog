@@ -13,6 +13,10 @@ public class InputRead {
 	public static byte getByte() {
 		return s.nextByte();
 	}
+		
+	public static int getInt() {
+		return s.nextInt();
+	}
 	
 	public static void close(){
 		s.close();
