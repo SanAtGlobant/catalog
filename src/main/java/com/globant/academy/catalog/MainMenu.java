@@ -61,7 +61,6 @@ public class MainMenu {
 	}
 
 	private void showMenu() {
-
 		System.out.print("Welcome to the Comic Catalog!" + "\n\n1 - Login" + "\n2 - View catalog"
 				+ "\n3 - Quit application" + "\n----------------------------------" + "\nOption: ");
 

@@ -3,8 +3,17 @@ package com.globant.academy.catalog;
 public class Comic {
 	private String title;
 	private String genre;
-	private int count = 0;
+	private int count = 1;
+	private int borrowed = 0;
 	private int volume;
+
+	public int getBorrowed() {
+		return borrowed;
+	}
+
+	public void setBorrowed(int borrowed) {
+		this.borrowed = borrowed;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
