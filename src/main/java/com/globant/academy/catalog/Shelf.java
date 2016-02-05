@@ -2,6 +2,7 @@ package com.globant.academy.catalog;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class Shelf {
 	private static TreeSet<Comic> comicList = new TreeSet<Comic>(new ComicComp());
@@ -14,9 +15,6 @@ public class Shelf {
 		}
 	}
 
-	public void increaseBorrowed(Comic c) {
-		comicList.stream().filter(t -> t.equals(c)).forEach(comic -> comic.setBorrowed(comic.getBorrowed() + 1));
-	}
 
 	public boolean removeComic(Comic c) {
 		return comicList.remove(c);
@@ -79,11 +77,25 @@ public class Shelf {
 		loanList.remove(loan);
 	}
 
-	public Loan getLoans(User user) {	//Working on it <<<<<<
+	public Loan getLoans(User user) {
 		System.out.println("Your current loans are:\n");
-		loanList.stream().filter(t -> t.getUsr().equals(user)).forEach(loan -> System.out.println(" - " + loan.display()));
+		int i = 0;
+		ArrayList<Loan> currentLoans = loanList.stream().filter(t -> t.getUsr().equals(user)).collect(Collectors.toCollection(ArrayList::new));
+		for (Loan loan : currentLoans){
+			System.out.println(i + " - " + loan.display());
+			i++;
+		}
 		System.out.println("-----------------------\n");
-		System.out.println("Option: ");
-		return null;
+		System.out.print("Option: ");
+		Loan loanSelected = currentLoans.get(InputRead.getInt());
+		decreaseBorrowed(loanSelected.getComic());
+		return loanSelected;
+	}
+
+	public void decreaseBorrowed(Comic c) {
+		comicList.stream().filter(t -> t.equals(c)).forEach(comic -> comic.setBorrowed(comic.getBorrowed() - 1));
+	}
+	public void increaseBorrowed(Comic c) {
+		comicList.stream().filter(t -> t.equals(c)).forEach(comic -> comic.setBorrowed(comic.getBorrowed() + 1));
 	}
 }

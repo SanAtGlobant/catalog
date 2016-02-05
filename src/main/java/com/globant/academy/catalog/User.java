@@ -35,7 +35,6 @@ public class User {
 
 	private void returnComic() {
 		shelf.returnComic(shelf.getLoans(this));
-
 	}
 
 	private void borrowComic() {
