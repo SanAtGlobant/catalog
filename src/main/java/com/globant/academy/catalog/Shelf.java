@@ -15,7 +15,6 @@ public class Shelf {
 		}
 	}
 
-
 	public boolean removeComic(Comic c) {
 		return comicList.remove(c);
 	}
@@ -25,10 +24,13 @@ public class Shelf {
 	}
 
 	public static void displayComics() {
-		System.out.println("Genre           Title           Volume   Count  Borrowed");
+//		System.out.printf("%12s" + "%12s" + "%12s" + "%12s" + "%12s", "Genre", "Title", "Volume", "Count",
+//				"Borrowed\n\n");
 		for (Comic e : comicList) {
-			System.out.println(
-					e.getGenre() + "        " + e.getTitle() + "        " + e.getVolume() + "  " + e.getCount() + "  " + e.getBorrowed());
+			 System.out.println(e.getGenre() + " " + e.getTitle() + " " +
+			 e.getVolume() + " " + e.getCount() + " " + e.getBorrowed());
+//			System.out.printf("%12s" + "%12s" + "%6d" + "%6d" + "%6d", e.getGenre(), e.getTitle(), e.getVolume(),
+//					e.getCount(), e.getBorrowed() + "\n" );
 		}
 		System.out.println("------------------------");
 	}
@@ -80,8 +82,9 @@ public class Shelf {
 	public Loan getLoans(User user) {
 		System.out.println("Your current loans are:\n");
 		int i = 0;
-		ArrayList<Loan> currentLoans = loanList.stream().filter(t -> t.getUsr().equals(user)).collect(Collectors.toCollection(ArrayList::new));
-		for (Loan loan : currentLoans){
+		ArrayList<Loan> currentLoans = loanList.stream().filter(t -> t.getUsr().equals(user))
+				.collect(Collectors.toCollection(ArrayList::new));
+		for (Loan loan : currentLoans) {
 			System.out.println(i + " - " + loan.display());
 			i++;
 		}
@@ -95,6 +98,7 @@ public class Shelf {
 	public void decreaseBorrowed(Comic c) {
 		comicList.stream().filter(t -> t.equals(c)).forEach(comic -> comic.setBorrowed(comic.getBorrowed() - 1));
 	}
+
 	public void increaseBorrowed(Comic c) {
 		comicList.stream().filter(t -> t.equals(c)).forEach(comic -> comic.setBorrowed(comic.getBorrowed() + 1));
 	}
