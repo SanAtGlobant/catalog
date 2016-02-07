@@ -5,7 +5,6 @@ public class MainMenu {
 	private Login login = new Login();
 	private byte option;
 	private boolean exit;
-	//static Admin admin = new Admin();
 
 	public void runMenu() {
 

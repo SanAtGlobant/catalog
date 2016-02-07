@@ -1,11 +1,14 @@
 package com.globant.academy.catalog;
 
-import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Login {
 	private static TreeSet<User> userList = new TreeSet<User>(new UserComp());
-	private static User loggedUser;
+	public static TreeSet<User> getUserList() {
+		return userList;
+	}
+
+	protected static User loggedUser;
 	private static String loggedUserPrivilege;
 
 	public void logUser(User u) {

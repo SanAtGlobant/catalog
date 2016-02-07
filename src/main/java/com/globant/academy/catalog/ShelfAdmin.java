@@ -1,7 +1,6 @@
 package com.globant.academy.catalog;
 
 import java.util.ArrayList;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class ShelfAdmin extends Shelf {
@@ -29,9 +28,6 @@ public class ShelfAdmin extends Shelf {
 		getLoanList().remove(loan);
 	}
 
-	public void returnComic(Loan loan) {
-		getLoanList().remove(loan);
-	}
 	public void increaseBorrowed(Comic c) {
 		getComicList().stream().filter(t -> t.equals(c)).forEach(comic -> comic.setBorrowed(comic.getBorrowed() + 1));
 	}
