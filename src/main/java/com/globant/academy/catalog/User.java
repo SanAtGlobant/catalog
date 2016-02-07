@@ -9,7 +9,7 @@ public class User {
 	// ***** OPTIONS & MENU *****
 
 	public byte options() {
-		System.out.print("\n\n1 - Borrow comic" + "\n2 - Return comic" + "\n3 - View catalog" + "\n4 - Log out"
+		System.out.print("\n\n1 - Borrow comic" + "\n2 - Return comic" + "\n3 - View catalog" + "\n4 - Display current loans" + "\n5 - Log out"
 				+ "\n0 - Quit application" + "\n----------------------------------" + "\nOption: ");
 
 		byte selection = InputRead.getByte();
@@ -24,6 +24,9 @@ public class User {
 			Shelf.displayComics();
 			break;
 		case 4:
+			Shelf.displayCurrentLoans(this);
+			break;
+		case 5:
 			return 0;
 		case 0:
 			return -1;
@@ -34,18 +37,27 @@ public class User {
 	}
 
 	private void returnComic() {
-		shelf.returnComic(shelf.getLoans(this));
+		Loan loan = shelf.getLoans(this);
+		if(loan == null){
+			return;
+		}
+		shelf.returnComic(loan);
+		shelf.decreaseBorrowed(loan.getComic());
 	}
 
 	private void borrowComic() {
 		Comic comic = this.shelf.getComic();
+		if(comic == null){
+			return;
+		}
 		if (comic.getBorrowed() == comic.getCount()) {
 			System.out.println("All the copies are borrowed at the moment.");
-		} else if (this.shelf.addLoan(new Loan(comic, this))) {
-			this.shelf.increaseBorrowed(comic);
-			System.out.println("The comic was borrowed successfully.");
-		} else {
+		} else if (this.shelf.addLoanRequest(new Loan(comic, this))) {
+			System.out.println("A loan request has been submitted.");
+		} else if(this.shelf.alreadyBorrowed((new Loan(comic, this)))){
 			System.out.println("You already have a copy of this comic.");
+		}else{
+			System.out.println("You already have loan request of this comic.");
 		}
 	}
 
@@ -73,12 +85,4 @@ public class User {
 	public String toString() {
 		return name + pass;
 	}
-
-	// public boolean equals(User u) { //NO FUNCIONO PARA AGREGAR AL TREESET
-	// if (this.toString().equals(u.toString())) {
-	// return true;
-	// }
-	// return false;
-	// }
-
 }
