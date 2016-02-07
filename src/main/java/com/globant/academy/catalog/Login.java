@@ -5,13 +5,10 @@ import java.util.TreeSet;
 
 public class Login {
 	private static TreeSet<User> userList = new TreeSet<User>(new UserComp());
-//	private static TreeSet<User> userList = new TreeSet<User>(); NO FUNCIONO
 	private static User loggedUser;
 	private static String loggedUserPrivilege;
-//	private static Scanner s = new Scanner(System.in);
 
 	public void logUser(User u) {
-		userList.add(new User("Luca", "Luca"));
 		if (isSheldon(u)) {
 			System.out.println(u.getName() + " is now logged in.");
 			setLoggedUser(new Admin());

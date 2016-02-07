@@ -1,20 +1,17 @@
 package com.globant.academy.catalog;
 
-import java.util.Scanner;
-
 public class MainMenu {
 
-	Login login = new Login();
-	protected byte option;
+	private Login login = new Login();
+	private byte option;
 	private boolean exit;
-	Scanner scan = new Scanner(System.in);
-	static Admin admin = new Admin();
+	//static Admin admin = new Admin();
 
 	public void runMenu() {
 
 		while (!exit) {
 			showMenu();
-			option = askOption();
+			option = InputRead.getByte();
 			processOption(option);
 			while (login.getLoggedUser() != null) {
 				switch (login.getLoggedUser().options()) {
@@ -36,9 +33,9 @@ public class MainMenu {
 		case 1:
 			String usr, pss;
 			System.out.print("\nUser: ");
-			usr = scan.next();
+			usr = InputRead.getLine();
 			System.out.print("\nPassword: ");
-			pss = scan.next();
+			pss = InputRead.getLine();
 			User user = new User(usr, pss);
 			login.logUser(user);
 			break;
@@ -55,14 +52,8 @@ public class MainMenu {
 		}
 	}
 
-	private byte askOption() {
-		byte option = scan.nextByte();
-		return option;
-	}
-
 	private void showMenu() {
 		System.out.print("Welcome to the Comic Catalog!" + "\n\n1 - Login" + "\n2 - View catalog"
 				+ "\n3 - Quit application" + "\n----------------------------------" + "\nOption: ");
-
 	}
 }

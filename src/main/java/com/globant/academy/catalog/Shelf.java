@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class Shelf {
 	private static TreeSet<Comic> comicList = new TreeSet<Comic>(new ComicComp());
 	private static TreeSet<Loan> loanList = new TreeSet<Loan>(new LoanComp());
+	private static TreeSet<Loan> loanRequestList = new TreeSet<Loan>(new LoanComp());
 
 	public void addComic(Comic c) {
 		if (comicList.add(c)) {
